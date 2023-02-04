@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+main table {
+	width: auto;
+	height: 300px;
+	margin: 10px;
+}
+
+main h3 {
+	text-align: center;
+	padding: 20px;
+}
+
+main
+
+
+table th,td {
+	border: 1px solid gray;
+	border-radius: 5px;
+}

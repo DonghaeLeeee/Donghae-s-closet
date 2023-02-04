@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+header {
+	background-color: navy;
+	color: white;
+	margin: 0px;
+	height: 100px;
+	padding: 5px;
+}
