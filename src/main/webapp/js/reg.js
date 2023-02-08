@@ -90,7 +90,7 @@ function func_reg() {
 	}
 
 	//주소 썻는지 확인
-	else if (address.value = "") {
+	else if (address.value == "") {
 		alert('주소를 입력해주세요.')
 		address.focus()
 		isTrue = false

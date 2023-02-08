@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jdbc.util.OracleUtil;
+import vo.MusinsaMsVo;
 import vo.MusinsaVo;
 
 public class MusinsaDao {
@@ -23,10 +24,11 @@ public class MusinsaDao {
 
 	// 회원가입할때 정보 기입
 	public int insert(MusinsaVo vo) throws SQLException {
+		
 		String sql = "INSERT INTO MUSINSAPEOPLE values(?,?,?,?,?,sysdate,?,?)";
 		Connection conn = OracleUtil.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-
+		
 		pstmt.setInt(1, vo.getMemberno());
 		pstmt.setString(2, vo.getName());
 		pstmt.setString(3, vo.getNickname());
@@ -35,9 +37,10 @@ public class MusinsaDao {
 		pstmt.setString(6, vo.getId());
 		pstmt.setString(7, vo.getPassword());
 
+		int result = pstmt.executeUpdate();
 		pstmt.close();
 		conn.close();
-		return pstmt.executeUpdate();
+		return result;
 	}
 
 	// 회원정보수정
@@ -101,16 +104,20 @@ public class MusinsaDao {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
-			MusinsaVo m = new MusinsaVo(rs.getInt(1),
-				 rs.getString(2),
-				 rs.getString(3),
-				 rs.getString(4),
-				 rs.getString(4),
-				 rs.getDate(5),
-				 rs.getString(6),
-				 rs.getString(7));
+			MusinsaVo m = new MusinsaVo(
+					rs.getInt(1),
+					rs.getString(2),
+					rs.getString(3),
+					rs.getString(4),
+					rs.getString(5),
+					rs.getDate(6),
+					rs.getString(7),
+					rs.getString(8));
 			list.add(m);
 		}
+		rs.close();
+		pstmt.close();
+		conn.close();
 		
 		return list;
 	}
@@ -135,6 +142,11 @@ public class MusinsaDao {
 					rs.getDate(6),
 					rs.getString(7),
 					rs.getString(8));
+		
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
 		return vo;
 		}
 	
@@ -151,9 +163,49 @@ public class MusinsaDao {
 		if(rs.next())
 			result =rs.getInt(1);
 		
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
 		return result;
 	}
 	
+	//로그인할떄 아이디가 있는건가 확인
+	public void logintest(String id, String password) throws SQLException {
+		String sql = "SELECT id,password FROM MUSINSAPEOPLE m \r\n"
+				+ "WHERE id = ? AND PASSWORD = ?";
+		Connection conn = OracleUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.setString(2, password);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			rs.getString(1);
+			rs.getString(2);
+		}
+		rs.close();
+		pstmt.close();
+		conn.close();
+	}
+	
+	public void logintest2(String id, String password) {
+		
+	}
+	
+	//MusinsaMs Id,비밀번호 생성
+	public int insertMs (MusinsaMsVo vo) throws SQLException {
+		String sql = "INSERT INTO MUSINSAMS VALUES (?,?)";
+		Connection conn = OracleUtil.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, vo.getId());
+		pstmt.setString(1, vo.getPassword());
+		
+		int result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		return  result;
+	}
 	
 	
 	}

@@ -13,11 +13,10 @@
 	<%@include file="../header.jsp"%>
 	<main>
 		<br>
-		<h3>동해네 옷장 회원가입</h3>
-		<form action="" method="post">
-			<input type="hidden" value="${memberno }" name="memberno"
-				id="jsmemberno"> <input type="hidden" value=""
-				name="joindate" id="jsjoindate">
+		<h3>동해의 옷장 회원가입</h3>
+		<form action="" method="POST">
+				<input type="hidden" value="${memberno }" name="memberno" id="jsmemberno">
+				<input type="hidden" name="joindate" id="jsjoindate">
 			<table>
 				<tr>
 					<th>이름</th>

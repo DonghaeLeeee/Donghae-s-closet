@@ -6,13 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
-<link rel = "stylesheet" href="css/layout.css">
-<%@include file="../header.jsp" %>
+<link rel="shortcut icon" href="image/faviconV2.jpg" type="image/x-icon">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/list.css">
+<%@include file="../header.jsp"%>
 </head>
 <body>
 	<main>
 		<h3>동해의 옷장 회원목록</h3>
-
+		<br>
 		<table>
 			<tr>
 				<th>회원번호</th>
@@ -36,7 +38,11 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<div style="position: absolute; right: 0px; bottom: 0px; font-size: 13px;">
+   관리자용 페이지
+</div>
 	</main>
+		
 </body>
-<%@include file="../footer.jsp" %>
+<%@include file="../footer.jsp"%>
 </html>
