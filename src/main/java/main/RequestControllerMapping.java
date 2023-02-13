@@ -11,6 +11,8 @@ import controller.LogoutController;
 import controller.MyPageController;
 import controller.RegActionController;
 import controller.RegController;
+import controller.UpdateActionController;
+import controller.UpdateController;
 
 public class RequestControllerMapping {
 
@@ -24,6 +26,8 @@ public class RequestControllerMapping {
 		mapping.put(new RequestKeyValue("/login.hrd", "POST"), new LoginActionController());
 		mapping.put(new RequestKeyValue("/logout.hrd", "GET"), new LogoutController());
 		mapping.put(new RequestKeyValue("/mypage.hrd", "GET"), new MyPageController());
+		mapping.put(new RequestKeyValue("/mypage.hrd", "POST"), new UpdateController());
+		mapping.put(new RequestKeyValue("/update.hrd", "POST"), new UpdateActionController());
 	}
 
 	public static Controller getController(RequestKeyValue key) {

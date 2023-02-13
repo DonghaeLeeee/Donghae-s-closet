@@ -15,17 +15,18 @@ public class LoginActionController implements Controller {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		MusinsaVo vo = null;
 		MusinsaDao dao = MusinsaDao.getInstance();
 		HttpSession session = request.getSession();
 
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-
+		
 		try {
 			if (id != null && password != null) {
-				dao.login(id, password);
-				session.setAttribute("userid", id);
+				vo = dao.login(id, password);
+				
+				session.setAttribute("vo", vo);
 				response.sendRedirect(request.getContextPath());
 			}else {
 				response.sendRedirect("/musinsa/loginView.jsp");

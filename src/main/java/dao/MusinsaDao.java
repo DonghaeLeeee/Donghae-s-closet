@@ -76,23 +76,24 @@ public class MusinsaDao {
 
 	// 로그인
 	//로그인하면 닉네임 나오게설정
-	public void login(String id, String password) throws SQLException {
-		String sql = "SELECT id, password, nickname FROM MUSINSAPEOPLE m \r\n" + "WHERE id = ? AND password = ?";
+	public MusinsaVo login(String id, String password) throws SQLException {
+		String sql = "SELECT * FROM MUSINSAPEOPLE m \r\n" + "WHERE id = ? AND password = ?";
 		Connection conn = OracleUtil.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setNString(1, id);
 		pstmt.setNString(2, password);
 		ResultSet rs = pstmt.executeQuery();
+		MusinsaVo vo = null;
+		
 
-		while (rs.next()) {
-			rs.getString(1);
-			rs.getString(2);
-			rs.getString(3);
+		if (rs.next()) {
+			 vo  = new MusinsaVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), id, password);
 		}
 		
 		rs.close();
 		pstmt.close();
 		conn.close();
+		return vo;
 	}
 	
 	//회원 전체목록 조회
@@ -188,9 +189,6 @@ public class MusinsaDao {
 		conn.close();
 	}
 	
-	public void logintest2(String id, String password) {
-		
-	}
 	
 	//MusinsaMs Id,비밀번호 생성
 	public int insertMs (MusinsaMsVo vo) throws SQLException {
@@ -199,7 +197,7 @@ public class MusinsaDao {
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, vo.getId());
-		pstmt.setString(1, vo.getPassword());
+		pstmt.setString(2, vo.getPassword());
 		
 		int result = pstmt.executeUpdate();
 		pstmt.close();
