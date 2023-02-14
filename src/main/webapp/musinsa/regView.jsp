@@ -17,6 +17,7 @@
 		<form action="" method="POST">
 				<input type="hidden" value="${memberno }" name="memberno" id="jsmemberno">
 				<input type="hidden" name="joindate" id="jsjoindate">
+				<input type="hidden" value="${mblevel }" name="mblevel">
 			<table>
 				<tr>
 					<th>이름</th>

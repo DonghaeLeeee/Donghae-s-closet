@@ -30,7 +30,8 @@ public class RegActionController implements Controller {
 				request.getParameter("address"),
 				null,
 				request.getParameter("id"),
-				request.getParameter("password")
+				request.getParameter("password"),
+				1
 				);
 		
 		

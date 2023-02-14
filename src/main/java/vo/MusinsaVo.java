@@ -24,4 +24,5 @@ public class MusinsaVo {
 	private Date joindate;
 	private String id;
 	private String password;
+	private int mblevel;
 }

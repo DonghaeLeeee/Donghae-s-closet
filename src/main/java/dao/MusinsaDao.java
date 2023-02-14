@@ -25,7 +25,7 @@ public class MusinsaDao {
 	// 회원가입할때 정보 기입
 	public int insert(MusinsaVo vo) throws SQLException {
 		
-		String sql = "INSERT INTO MUSINSAPEOPLE values(?,?,?,?,?,sysdate,?,?)";
+		String sql = "INSERT INTO MUSINSAPEOPLE values(?,?,?,?,?,sysdate,?,?,1)";
 		Connection conn = OracleUtil.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
@@ -87,7 +87,7 @@ public class MusinsaDao {
 		
 
 		if (rs.next()) {
-			 vo  = new MusinsaVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), id, password);
+			 vo  = new MusinsaVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), id, password,rs.getInt(7));
 		}
 		
 		rs.close();
@@ -113,7 +113,8 @@ public class MusinsaDao {
 					rs.getString(5),
 					rs.getDate(6),
 					rs.getString(7),
-					rs.getString(8));
+					rs.getString(8),
+					rs.getInt(9));
 			list.add(m);
 		}
 		rs.close();
@@ -142,7 +143,8 @@ public class MusinsaDao {
 					rs.getString(5),
 					rs.getDate(6),
 					rs.getString(7),
-					rs.getString(8));
+					rs.getString(8),
+					rs.getInt(9));
 		
 		rs.close();
 		pstmt.close();

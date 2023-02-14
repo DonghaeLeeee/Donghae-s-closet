@@ -27,7 +27,8 @@ public class UpdateActionController implements Controller {
 				request.getParameter("address"),
 				null,
 				request.getParameter("id"),
-				request.getParameter("password"));
+				request.getParameter("password"),
+				1);
 		
 		int result = 0;
 		

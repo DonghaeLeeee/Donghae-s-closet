@@ -19,8 +19,10 @@ public class RegController implements Controller {
 		
 		try {
 			int memberno = 0;
+			int mblevel = 1;
 			memberno = dao.plusmemberno();
 			request.setAttribute("memberno", memberno);
+			request.setAttribute("mblevel", mblevel);
 		} catch (SQLException e) {
 		}
 

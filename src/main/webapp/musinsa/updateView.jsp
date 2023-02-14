@@ -15,8 +15,9 @@
 		<br>
 		<h3>동해의 옷장 회원정보수정</h3>
 		<form action="update.hrd" method="POST">
-				<input type="hidden" value="${memberno }" name="memberno" id="jsmemberno">
+				<input type="hidden" value="${vo.memberno }" name="memberno" id="jsmemberno">
 				<input type="hidden" name="joindate" id="jsjoindate">
+				<input type="hidden" name="mblevel" value=${vo.mblevel }>
 			<table>
 				<tr>
 					<th>이름</th>
